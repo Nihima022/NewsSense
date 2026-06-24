@@ -14,7 +14,7 @@ from News_Summarizer_Agent import new_summarizer_agent
 class conversation(BaseModel):
     output: List[str]
 
-@function_tool
+@function_tool()
 def get_actual_agent(user_query:str):
     """
     Detect user intent and route to the proper specialist agent.Supports multiple intents.
@@ -26,14 +26,18 @@ def get_actual_agent(user_query:str):
     fact_checking_list=["verify", "fact check", "is it true", "did", "claim"]
     summarizer_list=["summarize", "summary", "shorten"]
 
-    for word in query:
-        if word in trending_news_list:
+    for word in trending_news_list:
+        if word in query:
             get_output.append(word)
+            break
 
-        if word in fact_checking_list:
+    for word in fact_checking_list:
+        if word in query:
             get_output.append(word)
+            break
 
-        if word in summarizer_list:
+    for word in summarizer_list:
+        if word in query:
             get_output.append(word)
 
     if not get_output:
@@ -44,8 +48,6 @@ def get_actual_agent(user_query:str):
     return {
         "output": get_output,
     }
-        
-
 Routing_Agent=Agent(
     name="Controller Agent",
     instructions=""" 
@@ -65,6 +67,7 @@ Routing_Agent=Agent(
     Always route.
     """,
     model=structured_model,
+    tools=[get_actual_agent],
     handoffs=[fact_checking_agent, new_summarizer_agent, trending_news_agent],
     output_type= conversation
 )

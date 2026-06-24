@@ -75,7 +75,8 @@ new_summarizer_agent=Agent(
     - Keep summaries short and factual.
     - Limit to 3–5 bullets.
     """,
-    tools=[summarize_item],
-    output_type= checking_items,
+    tools=[summarize_news],
+    model=structured_model,
+    output_type= summarize_item,
     handoff_description= """Handles summarization of long news articles ,multiple trending headlines, pasted news reports"""
 )

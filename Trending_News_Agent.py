@@ -51,10 +51,8 @@ def trending_news_tool(topic:str):
     if not matched_news:
         return []
 
-    return {
-        "Topic": topic,
-        "Result": matched_news
-    }
+    return matched_news[0]
+
 
 trending_news_agent= Agent(
     name= "Trending_News_Searching_Agent",
@@ -70,7 +68,7 @@ trending_news_agent= Agent(
     - Do not invent news.
     """,
     tools=[trending_news_tool],
-    model=structured_model(),
+    model=structured_model,
     output_type=news_item,
     handoff_description="""
      Handles trending news, breaking news, and topic-based news queries.
