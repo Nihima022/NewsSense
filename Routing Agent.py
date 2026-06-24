@@ -5,22 +5,49 @@ from pydantic import BaseModel
 from typing import List
 
 from agents import Agent
+from agents import function_tool
 
 from Fact_Checking_Agent import fact_checking_agent, checking_items
 from Trending_News_Agent import trending_news_agent
 from News_Summarizer_Agent import new_summarizer_agent
 
-from Trending_News_Agent import trending_news_tool
-from Fact_Checking_Agent import fact_checking
-from News_Summarizer_Agent import summarize_news
-
 class conversation(BaseModel):
-    trending_news: List[str]
-    fact_checking:str
-    summarize: List[str]
+    output: List[str]
+
+@function_tool
+def get_actual_agent(user_query:str):
+    """
+    Detect user intent and route to the proper specialist agent.Supports multiple intents.
+    """
+    query=user_query.lower().strip()
+    get_output=[]
+
+    trending_news_list=["trending", "latest", "news", "happening", "update"]
+    fact_checking_list=["verify", "fact check", "is it true", "did", "claim"]
+    summarizer_list=["summarize", "summary", "shorten"]
+
+    for word in query:
+        if word in trending_news_list:
+            get_output.append(word)
+
+        if word in fact_checking_list:
+            get_output.append(word)
+
+        if word in summarizer_list:
+            get_output.append(word)
+
+    if not get_output:
+        return {
+            "output": "Not Found in this agent function",
+        }
+
+    return {
+        "output": get_output,
+    }
+        
 
 Routing_Agent=Agent(
-    names=" Controller Agent",
+    name="Controller Agent",
     instructions=""" 
     You are the controller agent of NewsSense.
 
@@ -38,6 +65,6 @@ Routing_Agent=Agent(
     Always route.
     """,
     model=structured_model,
-    handoff=[fact_checking_agent, new_summarizer_agent, trending_news_agent],
+    handoffs=[fact_checking_agent, new_summarizer_agent, trending_news_agent],
     output_type= conversation
 )

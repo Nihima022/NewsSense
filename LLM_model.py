@@ -11,12 +11,6 @@ from agents import function_tool
 
 from openai import AsyncOpenAI
 
-from pydantic import BaseModel
-from pydantic import Field
-
-from typing import List
-from typing import Optional
-
 from dotenv import load_dotenv
 
 load_dotenv()
