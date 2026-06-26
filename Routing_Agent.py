@@ -11,6 +11,9 @@ from Fact_Checking_Agent import fact_checking_agent, checking_items
 from Trending_News_Agent import trending_news_agent
 from News_Summarizer_Agent import new_summarizer_agent
 
+from Guardrail import input_guardrail
+from Guardrail import output_guardrail
+
 class conversation(BaseModel):
     output: List[str]
 
@@ -69,5 +72,8 @@ Routing_Agent=Agent(
     model=structured_model,
     tools=[get_actual_agent],
     handoffs=[fact_checking_agent, new_summarizer_agent, trending_news_agent],
-    output_type= conversation
+    output_type= conversation,
+    input_guardrails=[input_guardrail],
+    output_guardrails=[output_guardrail]
+
 )
