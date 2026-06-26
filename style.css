@@ -1,0 +1,236 @@
+/* =====================================
+   WHOLE PAGE BACKGROUND
+===================================== */
+.stApp {
+    background: linear-gradient(
+        135deg,
+        #0f0f0f 0%,
+        #1a1a1a 40%,
+        #ff7b00 100%
+    );
+    color: white;
+    font-family: "Segoe UI", sans-serif;
+}
+
+
+/* =====================================
+   SIDEBAR
+===================================== */
+section[data-testid="stSidebar"] {
+    background: linear-gradient(
+        180deg,
+        #111111 0%,
+        #1c1c1c 55%,
+        #ff7b00 100%
+    );
+    border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+
+/* Sidebar headings */
+section[data-testid="stSidebar"] h1,
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3 {
+    color: white;
+    font-size: 20px;
+}
+
+
+/* =====================================
+   MAIN HEADER
+===================================== */
+.main-header {
+    width: 100%;
+    text-align: center;
+    padding: 30px 20px 18px 20px;
+}
+
+
+/* Main title */
+.heading-title {
+    font-size: 58px;
+    font-weight: 800;
+    background: linear-gradient(
+        90deg,
+        #ff7b00,
+        #ffb347,
+        #ffd580
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+}
+
+
+/* Subtitle */
+.subtitle {
+    font-size: 14px;
+    color: #f0f0f0;
+    line-height: 1.7;
+    max-width: 850px;
+    margin: auto;
+}
+
+
+/* =====================================
+   TRENDING SECTION
+===================================== */
+.trending-title {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 18px;
+    margin-bottom: 16px;
+}
+
+
+/* =====================================
+   TRENDING BOXES
+===================================== */
+.news-box {
+    background: rgba(18, 18, 18, 0.92);
+    border: 1px solid rgba(255, 140, 0, 0.45);
+    border-radius: 18px;
+    padding: 16px;
+    min-height: 130px;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0px 0px 16px rgba(255, 123, 0, 0.22);
+    backdrop-filter: blur(8px);
+}
+
+
+/* News title inside box */
+.news-box h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+
+/* News source text */
+.news-box p {
+    font-size: 13px;
+    color: #dddddd;
+}
+
+
+/* Hover effect */
+.news-box:hover {
+    transform: translateY(-5px);
+    border: 1px solid orange;
+    box-shadow: 0px 0px 22px rgba(255, 140, 0, 0.55);
+}
+
+
+/* =====================================
+   CHAT MESSAGE BOXES
+===================================== */
+[data-testid="stChatMessage"] {
+    background: rgba(20, 20, 20, 0.82);
+    border: 1px solid rgba(255, 140, 0, 0.18);
+    border-radius: 16px;
+    padding: 14px;
+    margin-bottom: 14px;
+    backdrop-filter: blur(8px);
+}
+
+
+/* Chat text */
+[data-testid="stChatMessageContent"] {
+    color: white;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* =====================================
+   CHAT INPUT BOX
+===================================== */
+[data-testid="stChatInput"] {
+    border-radius: 14px;
+    border: 2px solid orange;
+    background: rgba(18,18,18,0.95);
+}
+
+
+/* Input text */
+textarea {
+    color: white !important;
+    background: transparent !important;
+    font-size: 14px !important;
+}
+
+
+/* =====================================
+   BUTTONS
+===================================== */
+.stButton button {
+    width: 100%;
+    background: linear-gradient(
+        90deg,
+        #ff7b00,
+        #ffae42
+    );
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    transition: all 0.25s ease;
+}
+
+
+/* Hover effect */
+.stButton button:hover {
+    background: linear-gradient(
+        90deg,
+        #ff8c00,
+        #ffc266
+    );
+    color: black;
+    transform: scale(1.02);
+}
+
+
+/* =====================================
+   MARKDOWN HEADINGS
+===================================== */
+h1, h2, h3, h4, h5, h6 {
+    color: white;
+}
+
+
+/* Paragraph text */
+p {
+    color: #f0f0f0;
+    font-size: 14px;
+}
+
+
+/* Bold text */
+strong {
+    color: #ffcc80;
+}
+
+
+/* =====================================
+   SCROLLBAR
+===================================== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #151515;
+}
+
+::-webkit-scrollbar-thumb {
+    background: orange;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ffae42;
+}
