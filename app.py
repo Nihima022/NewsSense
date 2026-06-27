@@ -1,8 +1,11 @@
 import streamlit as st
 import asyncio
-from agents import Runner
 from Routing_Agent import Routing_Agent
-
+from agents import (
+    Runner,
+    InputGuardrailTripwireTriggered,
+    OutputGuardrailTripwireTriggered
+)
 
 # Page setup
 st.set_page_config(
@@ -107,8 +110,18 @@ for msg in st.session_state.messages:
 
 # Async agent function
 async def run_agent(user_query):
-    result = await Runner.run(Routing_Agent, user_query)
-    return result.final_output
+    try:
+        result = await Runner.run(Routing_Agent, user_query)
+        return result.final_output
+
+    except InputGuardrailTripwireTriggered:
+        return "⚠️ Your input violates NewsSense safety policy."
+
+    except OutputGuardrailTripwireTriggered:
+        return "⚠️ Output blocked by safety guardrail."
+
+    except Exception as e:
+        return f"Error: {str(e)}"
 
 
 # Input source
@@ -138,8 +151,12 @@ if prompt:
     # Run routing agent
     response = asyncio.run(run_agent(prompt))
 
+    if isinstance(response, str):
+        st.warning(response)
+        formatted_response= "Only news Related Queries are acceptable"
+
     # Format output
-    if hasattr(response, "title"):
+    elif hasattr(response, "title"):
         formatted_response = f"""
 ### 📰 {response.title}
 
